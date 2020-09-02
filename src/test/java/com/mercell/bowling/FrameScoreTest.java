@@ -1,6 +1,5 @@
 package com.mercell.bowling;
 
-import com.mercell.bowling.FrameScore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,5 +31,23 @@ class FrameScoreTest {
         FrameScore invalidScore = new FrameScore(10, 2);
         assertFalse(invalidScore.isStrike(), "If the first shot is 10, then the score for the second value must be -1");
 
+    }
+
+    @Test
+    public void givenAFrameSquareWithSum10_whenIsSpare_thenReturnTrue() {
+        FrameScore strikeFrameScore = new FrameScore(1, 9);
+        assertTrue(strikeFrameScore.isSpare());
+    }
+
+    @Test
+    public void givenAFrameSquareWithSumNot10_whenIsSpare_thenReturnFalse() {
+        FrameScore strikeFrameScore = new FrameScore(1, 8);
+        assertFalse(strikeFrameScore.isSpare());
+    }
+
+    @Test
+    public void givenAFrameSquareWhichIsAStrike_whenIsSpare_thenReturnFalse() {
+        FrameScore strikeFrameScore = new FrameScore(10);
+        assertFalse(strikeFrameScore.isSpare());
     }
 }

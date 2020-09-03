@@ -4,8 +4,6 @@ import java.util.List;
 
 public class GameResultPrinter {
 
-    private final int MAXIMUM_TURNS_IN_EACH_TURN = 10;
-
     private List<FrameScore> frameScores;
 
     public GameResultPrinter(List<FrameScore> frameScores) {
@@ -19,14 +17,14 @@ public class GameResultPrinter {
     }
 
     private void printRoundsTable() {
-        for(int i = 1; i < MAXIMUM_TURNS_IN_EACH_TURN; i++) {
+        for(int i = 1; i < BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN; i++) {
             System.out.print("| f" + i + " ");
         }
         System.out.println("| f10   |");
     }
 
     private void printFrameScores() {
-        for(int i = 0; i < MAXIMUM_TURNS_IN_EACH_TURN; i++) {
+        for(int i = 0; i < BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN; i++) {
             System.out.print("|" + formatFrameScore(i ));
         }
         System.out.println("|");
@@ -40,7 +38,7 @@ public class GameResultPrinter {
     private String formatFrameScore(int i) {
         String firstScore = null;
         if(frameScores.get(i).isStrike()) {
-            if(i == MAXIMUM_TURNS_IN_EACH_TURN - 1) {
+            if(i == BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN - 1) {
                 return "X, " + frameScores.get(i).getBonusPoint1() + ", " + frameScores.get(i).getBonusPoint2();
             }
             return "X   ";
@@ -54,7 +52,7 @@ public class GameResultPrinter {
             secondScore = "/";
         } else {
             secondScore = formatSingleScore(frameScores.get(i).getSecondScore());
-            if(i == MAXIMUM_TURNS_IN_EACH_TURN - 1) {
+            if(i == BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN - 1) {
                 return firstScore + ", " + secondScore + "   ";
             }
         }

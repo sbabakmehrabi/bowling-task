@@ -5,9 +5,6 @@ import java.util.List;
 
 public class SequenceToFrameScoreConverter {
 
-    private final static int SCORE_IN_STRIKE_SHOT = 10;
-    private final static int MAX_SHOT_COUNTS_IN_BOWLING = 10;
-
     /**
      * This method identifies if each turn consists of two shots or one shot (strike shots) and
      * returns a list of FrameScores
@@ -27,9 +24,9 @@ public class SequenceToFrameScoreConverter {
 
             // check if we are working on the last shot.
             // The reading process would be different if the last shot is a spare or strike shot
-            if(turnIndex == MAX_SHOT_COUNTS_IN_BOWLING) {
+            if(turnIndex == BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN) {
                 //if this is a strike shot
-                if(shot == SCORE_IN_STRIKE_SHOT) {
+                if(shot == BowlingConstants.SCORE_IN_STRIKE_SHOT) {
                     frameScore = new FrameScore();
                     frameScore.setFirstScore(shot);
                     frameScore.setBonusPoint1(rawScores.get(i + 1));
@@ -38,7 +35,7 @@ public class SequenceToFrameScoreConverter {
                     break;
                 }
                 // if we this is a spare shot
-                if(shot + rawScores.get(i + 1) == MAX_SHOT_COUNTS_IN_BOWLING) {
+                if(shot + rawScores.get(i + 1) == BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN) {
                     frameScore = new FrameScore();
                     frameScore.setFirstScore(shot);
                     frameScore.setSecondScore(rawScores.get(i + 1));
@@ -53,7 +50,7 @@ public class SequenceToFrameScoreConverter {
                 frameScore.setFirstScore(shot);
                 thisIsFirstShotOfFrame = false;
 
-                if(shot == SCORE_IN_STRIKE_SHOT) {
+                if(shot == BowlingConstants.SCORE_IN_STRIKE_SHOT) {
                     frameScores.add(frameScore);
                     turnIndex++;
                     thisIsFirstShotOfFrame = true;

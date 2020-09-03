@@ -15,6 +15,10 @@ public class ScoreFileReader {
         this.filePath = filePath;
     }
 
+    /**
+     * This method reads a single-line file and creates a list of scores
+     * @return List<Integer>
+     */
     public List<Integer> readFileAndExtractTheScores() {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));

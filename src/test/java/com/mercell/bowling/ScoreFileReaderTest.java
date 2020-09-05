@@ -6,20 +6,21 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ScoreFileReaderTest {
 
     ScoreFileReader scoreFileReader;
 
     @Test
-    public void givenANonExistingFile_whenReadFileAndExtractScores_thenReturnNull() {
+    public void givenANonExistingFile_whenReadFileAndExtractScores_thenReturnNull() throws IOException {
         scoreFileReader = new ScoreFileReader("not-existed-file.csv");
 
-        List<Integer> scores = scoreFileReader.readFileAndExtractTheScores();
+        Exception exception = assertThrows(IOException.class, () -> {
+            scoreFileReader.readFileAndExtractTheScores();
+        });
 
-        assertNull(scores);
+        assertTrue(exception.getMessage().contains("The system cannot find the file specified"));
     }
 
     @Test

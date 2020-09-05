@@ -35,7 +35,7 @@ public class SequenceToFrameScoreConverter {
                     break;
                 }
                 // if we this is a spare shot
-                if(shot + rawScores.get(i + 1) == BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN) {
+                if(i + 1 < rawScores.size() && shot + rawScores.get(i + 1) == BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN) {
                     frameScore = new FrameScore();
                     frameScore.setFirstScore(shot);
                     frameScore.setSecondScore(rawScores.get(i + 1));

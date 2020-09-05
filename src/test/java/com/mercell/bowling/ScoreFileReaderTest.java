@@ -13,7 +13,7 @@ class ScoreFileReaderTest {
     ScoreFileReader scoreFileReader;
 
     @Test
-    public void givenANonExistingFile_whenReadFileAndExtractScores_thenReturnNull() throws IOException {
+    void givenANonExistingFile_whenReadFileAndExtractScores_thenReturnNull() throws IOException {
         scoreFileReader = new ScoreFileReader("not-existed-file.csv");
 
         Exception exception = assertThrows(IOException.class, () -> {
@@ -24,7 +24,7 @@ class ScoreFileReaderTest {
     }
 
     @Test
-    public void givenValidFile_whenReadFileAndExtractScores_thenReturnAValidArrayListContainingAllScores() throws IOException {
+    void givenValidFile_whenReadFileAndExtractScores_thenReturnAValidArrayListContainingAllScores() throws IOException {
         List<Integer> scores = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         scoreFileReader = new ScoreFileReader("src\\test\\java\\resources\\score-files-for-test.txt");

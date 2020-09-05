@@ -19,30 +19,18 @@ public class SequenceToFrameScoreConverter {
         int turnIndex = 1;
         for(int i=0; i < rawScores.size(); i++) {
 
-
             Integer shot = rawScores.get(i);
 
             // check if we are working on the last shot.
             // The reading process would be different if the last shot is a spare or strike shot
             if(turnIndex == BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN) {
                 //if this is a strike shot
-                if(shot == BowlingConstants.SCORE_IN_STRIKE_SHOT) {
-                    frameScore = new FrameScore();
-                    frameScore.setFirstScore(shot);
-                    frameScore.setBonusPoint1(rawScores.get(i + 1));
-                    frameScore.setBonusPoint2(rawScores.get(i + 2));
-                    frameScores.add(frameScore);
+                FrameScore newFrameScore = createFrameScoreForTheLastShot(rawScores, i);
+                if(newFrameScore != null) {
+                    frameScores.add(newFrameScore);
                     break;
                 }
-                // if we this is a spare shot
-                if(i + 1 < rawScores.size() && shot + rawScores.get(i + 1) == BowlingConstants.MAXIMUM_TURNS_IN_EACH_TURN) {
-                    frameScore = new FrameScore();
-                    frameScore.setFirstScore(shot);
-                    frameScore.setSecondScore(rawScores.get(i + 1));
-                    frameScore.setBonusPoint1(rawScores.get(i + 2));
-                    frameScores.add(frameScore);
-                    break;
-                }
+
             }
 
             if(thisIsFirstShotOfFrame) {
@@ -66,5 +54,17 @@ public class SequenceToFrameScoreConverter {
         }
 
         return frameScores;
+    }
+
+    private FrameScore createFrameScoreForTheLastShot(List<Integer> rawScores, int i) {
+        Integer shot = rawScores.get(i);
+        if(shot == BowlingConstants.SCORE_IN_STRIKE_SHOT) {
+            return new FrameScore(shot, -1, rawScores.get(i + 1), rawScores.get(i + 2));
+        }
+        // if we this is a spare shot
+        if(i + 1 < rawScores.size() && shot + rawScores.get(i + 1) == BowlingConstants.MAXIMUM_SCORE_IN_EACH_TURN) {
+            return new FrameScore(shot, rawScores.get(i + 1), rawScores.get(i + 2));
+        }
+        return null;
     }
 }

@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GameResultPrinterTest {
 
     @Test
-    public void givenASequenceWith10ShotsProvidedByTaskDescription_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWith10ShotsProvidedByTaskDescription_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
             add(new FrameScore(0, 3));
             add(new FrameScore(5, 0));
@@ -39,7 +39,7 @@ public class GameResultPrinterTest {
     }
 
     @Test
-    public void givenASequenceWith10ShotsProvidedByTheSecondTaskDescription_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWith10ShotsProvidedByTheSecondTaskDescription_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
             add(new FrameScore(7, 1));
             add(new FrameScore(5, 5));

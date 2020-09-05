@@ -1,18 +1,16 @@
 package com.mercell.bowling;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TotalScoreCalculatorTest {
 
     @Test
-    public void givenASequenceWithNoSpareAndNoStrike_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWithNoSpareAndNoStrike_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
                 add(new FrameScore(1, 1));
                 add(new FrameScore(2, 2));
@@ -24,7 +22,7 @@ class TotalScoreCalculatorTest {
     }
 
     @Test
-    public void givenASequenceWithOneSpareAndNoStrike_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWithOneSpareAndNoStrike_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
             add(new FrameScore(1, 1));
             add(new FrameScore(8, 2));
@@ -36,7 +34,7 @@ class TotalScoreCalculatorTest {
     }
 
     @Test
-    public void givenASequenceWithOneSpareAndOneStrike_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWithOneSpareAndOneStrike_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
             add(new FrameScore(10));
             add(new FrameScore(8, 2));
@@ -48,7 +46,7 @@ class TotalScoreCalculatorTest {
     }
 
     @Test
-    public void givenASequenceWithOneSpareAtTheLastShot_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWithOneSpareAtTheLastShot_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
             add(new FrameScore(1, 1));
             add(new FrameScore(2, 2));
@@ -60,7 +58,7 @@ class TotalScoreCalculatorTest {
     }
 
     @Test
-    public void givenASequenceWithOneStrikeAtTheLastShot_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWithOneStrikeAtTheLastShot_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
             add(new FrameScore(1, 1));
             add(new FrameScore(2, 2));
@@ -72,7 +70,7 @@ class TotalScoreCalculatorTest {
     }
 
     @Test
-    public void givenASequenceWith10ShotsProvidedByTaskDescription_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWith10ShotsProvidedByTaskDescription_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
             add(new FrameScore(0, 3));
             add(new FrameScore(5, 0));
@@ -91,7 +89,7 @@ class TotalScoreCalculatorTest {
     }
 
     @Test
-    public void givenASequenceWith10ShotsProvidedBySecondExampleInTaskDescription_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWith10ShotsProvidedBySecondExampleInTaskDescription_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
             add(new FrameScore(7,1));
             add(new FrameScore(5, 5));
@@ -110,7 +108,7 @@ class TotalScoreCalculatorTest {
     }
 
     @Test
-    public void givenASequenceWith10ShotsWith3StrikesShotAtTheLast3Turns_whenCalculate_thenReturnTheCorrectSum() {
+    void givenASequenceWith10ShotsWith3StrikesShotAtTheLast3Turns_whenCalculate_thenReturnTheCorrectSum() {
         List<FrameScore> frameScores = new ArrayList<FrameScore>() {{
             add(new FrameScore(5, 0));
             add(new FrameScore(5, 0));

@@ -13,7 +13,7 @@ class SequenceToFrameScoreConverterTest {
     SequenceToFrameScoreConverter sequenceToFrameScoreConverter;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         sequenceToFrameScoreConverter = new SequenceToFrameScoreConverter();
     }
 
@@ -56,20 +56,43 @@ class SequenceToFrameScoreConverterTest {
 
     @Test
     void givenAnArrayListOfScoresWithOneSpareAndOneStrike_whenConvert_thenReturnArrayOfFrameScores() {
-        List<Integer> rawScores = Arrays.asList(5, 5, 10, 1, 2);
+        List<Integer> rawScores = Arrays.asList(
+                10,
+                1, 9,
+                2, 0,
+                3, 0,
+                4, 0,
+                5, 0,
+                6, 0,
+                7, 0,
+                8, 0,
+                9, 0
+        );
 
         List<FrameScore> frameScores = sequenceToFrameScoreConverter.convert(rawScores);
 
-        assertEquals(3, frameScores.size(), "The result must be an array with length 3");
+        assertEquals(10, frameScores.size(), "The result must be an array with length 10");
 
-        assertEquals(5, frameScores.get(0).getFirstScore());
-        assertEquals(5, frameScores.get(0).getSecondScore());
+        assertEquals(10, frameScores.get(0).getFirstScore(), "The first score of turn 1 must be 10");
+        assertEquals(-1, frameScores.get(0).getSecondScore(), "The first score of turn 1 must be -1");
+        assertEquals(-1, frameScores.get(0).getBonusPoint1(), "The first score of turn 1 must be -1");
+        assertEquals(-1, frameScores.get(0).getBonusPoint2(), "The first score of turn 1 must be -1");
 
-        assertEquals(10, frameScores.get(1).getFirstScore());
-        assertEquals(-1, frameScores.get(1).getSecondScore());
+        assertEquals(1, frameScores.get(1).getFirstScore(), "The first score of turn 2 must be 1");
+        assertEquals(9, frameScores.get(1).getSecondScore(), "The first score of turn 2 must be 9");
+        assertEquals(-1, frameScores.get(1).getBonusPoint1(), "The first score of turn 2 must be -1");
+        assertEquals(-1, frameScores.get(1).getBonusPoint2(), "The first score of turn 2 must be -1");
 
-        assertEquals(1, frameScores.get(2).getFirstScore());
-        assertEquals(2, frameScores.get(2).getSecondScore());
+        for(int i=2 ; i < 10; i++) {
+            assertEquals(i, frameScores.get(i).getFirstScore(),
+                    "The first score of turn " + i + " must be " + i );
+            assertEquals(0, frameScores.get(i).getSecondScore(),
+                    "The second score of turn " + i + " must be 0");
+            assertEquals(-1, frameScores.get(i).getBonusPoint1(),
+                    "The bonus1 of turn " + i + " must be -1");
+            assertEquals(-1, frameScores.get(i).getBonusPoint2(),
+                    "The bonus2 of turn " + i + "  must be -1");
+        }
     }
 
     @Test
@@ -89,7 +112,7 @@ class SequenceToFrameScoreConverterTest {
 
         List<FrameScore> frameScores = sequenceToFrameScoreConverter.convert(rawScores);
 
-        assertEquals(10, frameScores.size(), "The result must be an array with length 3");
+        assertEquals(10, frameScores.size(), "The result must be an array with length 10");
 
         for(int i=1 ; i < 10; i++) {
             assertEquals(i, frameScores.get(i - 1).getFirstScore(),
@@ -125,7 +148,7 @@ class SequenceToFrameScoreConverterTest {
 
         List<FrameScore> frameScores = sequenceToFrameScoreConverter.convert(rawScores);
 
-        assertEquals(10, frameScores.size(), "The result must be an array with length 3");
+        assertEquals(10, frameScores.size(), "The result must be an array with length 10");
 
         for(int i=1 ; i < 10; i++) {
             assertEquals(i, frameScores.get(i - 1).getFirstScore(),

@@ -10,18 +10,18 @@ class FrameScoreTest {
     private FrameScore frameScore;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         frameScore = new FrameScore();
     }
 
     @Test
-    public void bothScoresForAnEmptyFrameScoreObjectMustBeMinesOne() {
+    void bothScoresForAnEmptyFrameScoreObjectMustBeMinesOne() {
         assertEquals(-1, frameScore.getFirstScore());
         assertEquals(-1, frameScore.getSecondScore());
     }
 
     @Test
-    public void isStrikeMustOnlyReturnsTrueIfTheFirstScoreIs10() {
+    void isStrikeMustOnlyReturnsTrueIfTheFirstScoreIs10() {
         FrameScore strikeFrameScore = new FrameScore(10);
         assertTrue(strikeFrameScore.isStrike(), "A shot with the first score equals to 10 is a Strike.");
 
@@ -34,19 +34,19 @@ class FrameScoreTest {
     }
 
     @Test
-    public void givenAFrameSquareWithSum10_whenIsSpare_thenReturnTrue() {
+    void givenAFrameSquareWithSum10_whenIsSpare_thenReturnTrue() {
         FrameScore strikeFrameScore = new FrameScore(1, 9);
         assertTrue(strikeFrameScore.isSpare());
     }
 
     @Test
-    public void givenAFrameSquareWithSumNot10_whenIsSpare_thenReturnFalse() {
+    void givenAFrameSquareWithSumNot10_whenIsSpare_thenReturnFalse() {
         FrameScore strikeFrameScore = new FrameScore(1, 8);
         assertFalse(strikeFrameScore.isSpare());
     }
 
     @Test
-    public void givenAFrameSquareWhichIsAStrike_whenIsSpare_thenReturnFalse() {
+    void givenAFrameSquareWhichIsAStrike_whenIsSpare_thenReturnFalse() {
         FrameScore strikeFrameScore = new FrameScore(10);
         assertFalse(strikeFrameScore.isSpare());
     }

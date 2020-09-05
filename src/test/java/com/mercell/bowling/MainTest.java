@@ -21,7 +21,7 @@ class MainTest {
     }
 
     @Test
-    public void givenNoInput_whenMain_thenMustPrintAnErrorToStandardOutput() {
+    void givenNoInput_whenMain_thenMustPrintAnErrorToStandardOutput() {
         Main.main(new String[]{});
 
         final String standardOutput = redirectedStdOutput.toString();
@@ -29,7 +29,7 @@ class MainTest {
     }
 
     @Test
-    public void givenInInvalidFilePath_whenMain_thenWeMustSeeFileNotFoundInTheStdout() {
+    void givenInInvalidFilePath_whenMain_thenWeMustSeeFileNotFoundInTheStdout() {
         Main.main(new String[]{"Not-found-file.txt"});
 
         final String standardOutput = redirectedStdOutput.toString();

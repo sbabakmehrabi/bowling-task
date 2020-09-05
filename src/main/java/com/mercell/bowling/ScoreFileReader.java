@@ -20,8 +20,12 @@ public class ScoreFileReader {
      * @return List<Integer>
      */
     public List<Integer> readFileAndExtractTheScores() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-        String line = br.readLine();
+
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            line = br.readLine();
+        }
+
         List<String> scoresAsStringList = Arrays.asList(line.replaceAll("\\s+","").split(","));
         return scoresAsStringList.stream().map(Integer::parseInt).collect(Collectors.toList());
 
